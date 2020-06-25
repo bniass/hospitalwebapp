@@ -1,0 +1,9 @@
+model\Service.class
+controller\SpecialiteServlet.class
+model\Utilisateur.class
+service\UserDAO.class
+utils\HibernateUtil.class
+service\IUser.class
+controller\UserServlet.class
+model\Medecin.class
+model\Specialite.class
