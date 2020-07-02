@@ -6,27 +6,41 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script type="application/javascript">
+        function supp(idsp) {
+            if(confirm("Etes-vous sûr ?")){
+                location.href = "/hospitalwebapp/specialite?action=delete&id="+idsp
+            }
+        }
+    </script>
 </head>
 <body>
+   <a href="${pageContext.request.contextPath}/specialite?action=add">NOUVEAU</a>
    <table class="table">
        <tr>
            <th>ID</th>
            <th>NOM SPECIALITE</th>
            <th>SERVICE</th>
+           <th></th>
+           <th></th>
        </tr>
        <c:forEach items="${requestScope.specialites}" var="sp">
            <tr>
                <td>${sp.id}</td>
                <td>${sp.libelle}</td>
                <td>${sp.service.libelle}</td>
+               <td>
+                   <a href="${pageContext.request.contextPath}/specialite?id=${sp.id}&action=update">EDITER</a>
+               </td>
+               <td>
+                   <a onclick="supp(${sp.id})" href="#">SUPPRIMER</a>
+               </td>
            </tr>
        </c:forEach>
    </table>
